@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="th">
+<head>
+    <meta charset="utf-8">
+    <title>ปฏิทินจันทรคติไทย</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-light: #EEF2FF;
+            --text: #1F2937;
+            --bg: #F9FAFB;
+            --card-bg: #ffffff;
+            --border: #E5E7EB;
+            --error: #DC2626;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans Thai', system-ui, -apple-system, sans-serif;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+        
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background-color: var(--bg);
+            font-family: inherit;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+        
+        input:hover {
+            border-color: var(--primary);
+        }
+        
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: block;
+            margin: 0 auto;
+            min-width: 200px;
+            font-family: inherit;
+        }
+        
+        button:hover {
+            background-color: #4338CA;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        pre {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            overflow: auto;
+            white-space: pre-wrap;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .err {
+            background-color: #FEF2F2;
+            color: var(--error);
+            padding: 1rem 1.25rem;
+            border-radius: 0.75rem;
+            margin: 1rem 0;
+            border: 1px solid #FEE2E2;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        h3 {
+            color: var(--text);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 1.25rem;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+
+        /* Loading animation */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .loading::after {
+            content: '';
+            display: block;
+            width: 2rem;
+            height: 2rem;
+            margin: 1rem auto 0;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            border-right-color: transparent;
+            animation: spin 0.75s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1>ปฏิทินจันทรคติไทย</h1>
+
+    <div class="card">
+        <form method="post" action="/" id="calendarForm">
+            <div class="row">
+                <div>
+                    <label>วัน</label>
+                    <input type="number" name="d" required min="1" max="31" placeholder="1-31">
+                </div>
+                <div>
+                    <label>เดือน</label>
+                    <input type="number" name="m" required min="1" max="12" placeholder="1-12">
+                </div>
+                <div>
+                    <label>ปี (ค.ศ.)</label>
+                    <input type="number" name="y" required placeholder="เช่น 1984" min="1">
+                </div>
+            </div>
+            <button type="submit">คำนวณ</button>
+        </form>
+    </div>
+
+    {% if error %}
+    <div class="err">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+        </svg>
+        <span><b>ผิดพลาด:</b> {{ error }}</span>
+    </div>
+    {% endif %}
+
+    {% if result is not none %}
+    <div class="card">
+        <h3>ผลลัพธ์</h3>
+        <pre>{{ result }}</pre>
+    </div>
+    {% endif %}
+
+    <div class="loading" id="loading">กำลังคำนวณ...</div>
+
+    <script>
+        document.getElementById('calendarForm').addEventListener('submit', function() {
+            document.getElementById('loading').classList.add('active');
+        });
+    </script>
+</body>
+</html>
