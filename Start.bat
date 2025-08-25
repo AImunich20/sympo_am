@@ -1,0 +1,1 @@
+C:/Users/USER/sympo/.venv/Scripts/python.exe app.py
